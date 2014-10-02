@@ -3,6 +3,7 @@ __author__ = 'jaime'
 from xhtml2pdf import pisa             # import python module
 from DefaultString import DefaultString
 from Value import Value
+from DefaultNumber import DefaultNumber
 
 from fnmatch import fnmatch
 
@@ -45,6 +46,8 @@ if __name__=="__main__":
     outputFilename = "test.pdf"
     valueList = []
     valueList.append(Value('name',DefaultString(["John doe","Jane doe","James bond"])))
+    valueList.append(Value('age',DefaultNumber(18,42)))
+
     sourceHtml = replaceValues(sourceHtml, valueList)
     print sourceHtml
     if(checkIfAllValuesAreFound(sourceHtml) == False):
