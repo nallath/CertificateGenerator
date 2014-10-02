@@ -1,6 +1,6 @@
 __author__ = 'jaime'
 
-from xhtml2pdf import pisa             # import python module
+from xhtml2pdf import pisa             # Convert html to pdf
 from DefaultString import DefaultString
 from Value import Value
 from DefaultNumber import DefaultNumber
@@ -8,7 +8,7 @@ from DefaultNumber import DefaultNumber
 from fnmatch import fnmatch
 
 
-
+#Check HTML for %variable% tags and replace them.
 def replaceValues(sourceHTML, valueList):
     for value in valueList:
         tag = '%' + str(value.getName()) + '%'
@@ -18,7 +18,6 @@ def replaceValues(sourceHTML, valueList):
 def checkIfAllValuesAreFound(sourceHTML):
     if fnmatch(sourceHTML,'%*%') == -1:
         return True
-
     return False
 
 # Utility function
@@ -45,9 +44,19 @@ if __name__=="__main__":
                  "              Age:  %age% <br/><p></body></html>"
     outputFilename = "test.pdf"
     valueList = []
-    valueList.append(Value('name',DefaultString(["John doe","Jane doe","James bond"])))
-    valueList.append(Value('age',DefaultNumber(18,42)))
-
+    valueList.append(Value('name',          value = 'Derpina'))
+    valueList.append(Value('age',           DefaultNumber(18,42)))
+    valueList.append(Value('hair',          DefaultString("Brown","Blond","Red")))
+    valueList.append(Value('eyes',          DefaultString("Green","Blue","Brown")))
+    valueList.append(Value('teeth',         DefaultString("All natural")))
+    valueList.append(Value('faceHair',      DefaultString("Clean shaven", "Mustace","Beard")))
+    valueList.append(Value('idMethod',      DefaultString("Fingerprints","Dental")))
+    valueList.append(Value('relationState', DefaultString("Married","Single")))
+    valueList.append(Value('mortuary',      DefaultString("Random")))
+    valueList.append(Value('sealType',      DefaultString("Not sealed")))
+    valueList.append(Value('synopsis',      DefaultString("")))
+    valueList.append(Value('investigator',  DefaultString(""))) #Add random name generator instead of string list
+    valueList.append(Value('caseNum',       DefaultNumber(1206184, 1802190)))
     sourceHtml = replaceValues(sourceHtml, valueList)
     print sourceHtml
     if(checkIfAllValuesAreFound(sourceHtml) == False):
