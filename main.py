@@ -7,7 +7,6 @@ from DefaultNumber import DefaultNumber
 
 from fnmatch import fnmatch
 
-
 #Check HTML for %variable% tags and replace them.
 def replaceValues(sourceHTML, valueList):
     for value in valueList:
@@ -42,21 +41,26 @@ if __name__=="__main__":
     # Define your data
     sourceHtml = "<html><body><p>Name: %name% <br/>" \
                  "              Age:  %age% <br/><p></body></html>"
+
+
     outputFilename = "test.pdf"
     valueList = []
     valueList.append(Value('name',          value = 'Derpina'))
     valueList.append(Value('age',           DefaultNumber(18,42)))
-    valueList.append(Value('hair',          DefaultString("Brown","Blond","Red")))
-    valueList.append(Value('eyes',          DefaultString("Green","Blue","Brown")))
-    valueList.append(Value('teeth',         DefaultString("All natural")))
-    valueList.append(Value('faceHair',      DefaultString("Clean shaven", "Mustace","Beard")))
-    valueList.append(Value('idMethod',      DefaultString("Fingerprints","Dental")))
-    valueList.append(Value('relationState', DefaultString("Married","Single")))
-    valueList.append(Value('mortuary',      DefaultString("Random")))
-    valueList.append(Value('sealType',      DefaultString("Not sealed")))
-    valueList.append(Value('synopsis',      DefaultString("")))
-    valueList.append(Value('investigator',  DefaultString(""))) #Add random name generator instead of string list
+    valueList.append(Value('hair',          DefaultString(["Brown","Blond","Red"])))
+    valueList.append(Value('eyes',          DefaultString(["Green","Blue","Brown"])))
+    valueList.append(Value('teeth',         DefaultString(["All natural"])))
+    valueList.append(Value('faceHair',      DefaultString(["Clean shaven", "Mustace","Beard"])))
+    valueList.append(Value('idMethod',      DefaultString(["Fingerprints","Dental"])))
+    valueList.append(Value('relationState', DefaultString(["Married","Single"])))
+    valueList.append(Value('mortuary',      DefaultString(["Random"])))
+    valueList.append(Value('sealType',      DefaultString(["Not sealed"])))
+    valueList.append(Value('synopsis',      DefaultString([""])))
+    valueList.append(Value('investigator',  DefaultString([""]))) #Add random name generator instead of string list
     valueList.append(Value('caseNum',       DefaultNumber(1206184, 1802190)))
+    valueList.append(Value('placeFound',    DefaultString([""])))
+#    valueList.append(Value( ))
+
     sourceHtml = replaceValues(sourceHtml, valueList)
     print sourceHtml
     if(checkIfAllValuesAreFound(sourceHtml) == False):
