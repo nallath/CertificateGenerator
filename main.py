@@ -5,7 +5,14 @@ from DefaultString import DefaultString
 from Value import Value
 from DefaultNumber import DefaultNumber
 
+from MainGui import MainGUI
+
 from fnmatch import fnmatch
+import wx
+app = wx.App()
+MainGUI(None)
+app.MainLoop()
+
 
 #Check HTML for %variable% tags and replace them.
 def replaceValues(sourceHTML, valueList):
