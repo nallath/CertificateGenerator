@@ -46,20 +46,26 @@ def convertHtmlToPdf(sourceHtml, outputFilename):
 if __name__=="__main__":
     pisa.showLogging()
     # Define your data
-    sourceHtml = "<html><body><p>Name: %name% <br/>" \
-                 "              Age:  %age% <br/><p></body></html>"
+    with open('test.html','r') as f:
+        sourceHtml = f.read()
+    #sourceHtml = "<html><body><p>Name: %name% <br/>" \
+     #            "              Age:  %age% <br/>" \
+     #            "Sealed?: %sealType% <br>"\
+      #           "facial hair: %faceHair% <br>"\
+       #          "<p></body></html>"
 
 
-    outputFilename = "test.pdf"
+    outputFilename = "test2.pdf"
     valueList = []
     valueList.append(Value('name',          value = 'Derpina'))
     valueList.append(Value('age',           DefaultNumber(18,42)))
+    valueList.append(Value('race',         DefaultString(["Hispanic","Caucasian","Asian","Black"])))
     valueList.append(Value('hair',          DefaultString(["Brown","Blond","Red"])))
     valueList.append(Value('eyes',          DefaultString(["Green","Blue","Brown"])))
     valueList.append(Value('teeth',         DefaultString(["All natural"])))
-    valueList.append(Value('faceHair',      DefaultString(["Clean shaven", "Mustace","Beard"])))
+    valueList.append(Value('faceHair',      DefaultString(["Clean shaved", "Mustache","Beard","Stubble"])))
     valueList.append(Value('idMethod',      DefaultString(["Fingerprints","Dental"])))
-    valueList.append(Value('relationState', DefaultString(["Married","Single"])))
+    valueList.append(Value('relationState', DefaultString(["Married","Single","Registered partnership",])))
     valueList.append(Value('mortuary',      DefaultString(["Random"])))
     valueList.append(Value('sealType',      DefaultString(["Not sealed"])))
     valueList.append(Value('synopsis',      DefaultString([""])))
